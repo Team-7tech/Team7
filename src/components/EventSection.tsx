@@ -37,11 +37,7 @@ export const EventSection: React.FC = () => {
           className="glass-card"
           style={{
             padding: '2.5rem',
-            marginBottom: '4rem',
-            background: 'rgba(255, 255, 255, 0.08)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.16)'
+            marginBottom: '4rem'
           }}
         >
           <div style={{ maxWidth: '840px', margin: '0 auto', textAlign: 'center' }}>
@@ -106,9 +102,7 @@ export const EventSection: React.FC = () => {
                     padding: '2rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '1rem',
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.14)'
+                    gap: '1rem'
                   }}
                 >
                   <div

@@ -43,12 +43,12 @@ export const Footer: React.FC = () => {
                 width: '32px',
                 height: '32px',
                 borderRadius: '8px',
-                background: 'rgba(0, 240, 255, 0.1)',
-                border: '1px solid rgba(0, 240, 255, 0.25)',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.18)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--accent-cyan)'
+                color: '#ffffff'
               }}
             >
               <Terminal style={{ width: '18px', height: '18px' }} />
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
           <div>
             © {currentYear} {eventData.organization}. All rights reserved. Flagship Technical Hackathon.
           </div>
-          <div className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--accent-cyan)' }}>
+          <div className="font-mono" style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.75)' }}>
             Think in Logic. Build Without Limits.
           </div>
         </div>

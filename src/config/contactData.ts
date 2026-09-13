@@ -4,9 +4,9 @@ export interface ContactInfo {
   emailNote: string;
   location: string;
   socialLinks: {
-    github?: string;
-    linkedin?: string;
     instagram?: string;
+    linkedin?: string;
+    github?: string;
     twitter?: string;
   };
   inquiryTypes: string[];
@@ -14,14 +14,12 @@ export interface ContactInfo {
 
 export const contactData: ContactInfo = {
   organization: "Team7",
-  emailPlaceholder: "contact@team7.tech",
-  emailNote: "Official contact address — update in src/config/contactData.ts",
-  location: "Campus Student Activity Center",
+  emailPlaceholder: "connect@team7.co.in",
+  emailNote: "Official contact address",
+  location: "Lovely Professional University",
   socialLinks: {
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    instagram: "https://instagram.com",
-    twitter: "https://twitter.com"
+    instagram: "https://www.instagram.com/team7_lpu/",
+    linkedin: "https://www.linkedin.com/company/team7lpu/home/",
   },
   inquiryTypes: [
     "General Event Question",

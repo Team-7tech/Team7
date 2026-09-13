@@ -8,10 +8,10 @@
   --bg-base: #050507;
   
   /* Frosted White Glass Containers */
-  --bg-glass-card: rgba(255, 255, 255, 0.08);
-  --bg-glass-card-hover: rgba(255, 255, 255, 0.12);
-  --bg-glass-panel: rgba(255, 255, 255, 0.06);
-  --bg-glass-input: rgba(255, 255, 255, 0.06);
+  --bg-glass-card: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 100%), rgba(10, 11, 16, 0.88);
+  --bg-glass-card-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.06) 100%), rgba(14, 16, 23, 0.92);
+  --bg-glass-panel: rgba(255, 255, 255, 0.08);
+  --bg-glass-input: rgba(255, 255, 255, 0.08);
   
   /* Borders & Dividers — Soft White Translucent Glass */
   --border-glass: rgba(255, 255, 255, 0.16);

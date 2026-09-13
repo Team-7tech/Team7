@@ -11,34 +11,17 @@ interface FaqCardProps {
 const FaqCard: React.FC<FaqCardProps> = ({ category, question, answer }) => {
   return (
     <div
+      className="glass-card"
       style={{
         width: '380px',
         minWidth: '380px',
         flexShrink: 0,
-        background: 'rgba(255, 255, 255, 0.08)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        color: '#ffffff',
-        borderRadius: '16px',
         padding: '1.75rem 2rem',
-        border: '1px solid rgba(255, 255, 255, 0.16)',
-        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.4)',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        transition: 'transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease, background 250ms ease',
         cursor: 'default',
         userSelect: 'none'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-        e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.4)';
       }}
     >
       <div>

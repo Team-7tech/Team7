@@ -1,8 +1,42 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Globe, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Globe } from 'lucide-react';
 import { Container } from './common/Container';
 import { SectionHeading } from './common/SectionHeading';
 import { contactData } from '../config/contactData';
+
+const InstagramIcon: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={style}
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const LinkedinIcon: React.FC<{ style?: React.CSSProperties }> = ({ style }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={style}
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +68,7 @@ export const ContactSection: React.FC = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
+    // Frontend structure ready for future backend delivery to connect@team7.co.in
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSent(true);
@@ -64,11 +99,7 @@ export const ContactSection: React.FC = () => {
               padding: '2.5rem',
               display: 'flex',
               flexDirection: 'column',
-              gap: '2rem',
-              background: 'rgba(255, 255, 255, 0.07)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.16)'
+              gap: '2rem'
             }}
           >
             <div>
@@ -140,10 +171,10 @@ export const ContactSection: React.FC = () => {
               <span className="font-mono" style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.6)', display: 'block', marginBottom: '0.75rem', fontWeight: 600 }}>
                 SOCIAL CHANNELS
               </span>
-              <div style={{ display: 'flex', gap: '0.75rem' }}>
-                {contactData.socialLinks.github && (
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                {contactData.socialLinks.instagram && (
                   <a
-                    href={contactData.socialLinks.github}
+                    href={contactData.socialLinks.instagram}
                     target="_blank"
                     rel="noreferrer"
                     style={{
@@ -155,11 +186,22 @@ export const ContactSection: React.FC = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#ffffff'
+                      color: '#ffffff',
+                      transition: 'transform 200ms ease, background 200ms ease, border-color 200ms ease'
                     }}
-                    aria-label="GitHub"
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.35)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+                    }}
+                    aria-label="Instagram"
                   >
-                    <Globe style={{ width: '18px', height: '18px' }} />
+                    <InstagramIcon style={{ width: '18px', height: '18px' }} />
                   </a>
                 )}
                 {contactData.socialLinks.linkedin && (
@@ -176,11 +218,54 @@ export const ContactSection: React.FC = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#ffffff'
+                      color: '#ffffff',
+                      transition: 'transform 200ms ease, background 200ms ease, border-color 200ms ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.35)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
                     }}
                     aria-label="LinkedIn"
                   >
-                    <MessageSquare style={{ width: '18px', height: '18px' }} />
+                    <LinkedinIcon style={{ width: '18px', height: '18px' }} />
+                  </a>
+                )}
+                {contactData.socialLinks.github && (
+                  <a
+                    href={contactData.socialLinks.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      width: '38px',
+                      height: '38px',
+                      borderRadius: '8px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#ffffff',
+                      transition: 'transform 200ms ease, background 200ms ease, border-color 200ms ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.35)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+                    }}
+                    aria-label="GitHub"
+                  >
+                    <Globe style={{ width: '18px', height: '18px' }} />
                   </a>
                 )}
               </div>
@@ -191,11 +276,7 @@ export const ContactSection: React.FC = () => {
           <div
             className="glass-card"
             style={{
-              padding: '2.5rem',
-              background: 'rgba(255, 255, 255, 0.07)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.16)'
+              padding: '2.5rem'
             }}
           >
             {!isSent ? (
@@ -214,7 +295,7 @@ export const ContactSection: React.FC = () => {
                   <input
                     type="text"
                     className="form-input"
-                    placeholder="e.g. Jordan Smith"
+                    placeholder="e.g. Pranjal Sukhla"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
@@ -230,7 +311,7 @@ export const ContactSection: React.FC = () => {
                   <input
                     type="email"
                     className="form-input"
-                    placeholder="jordan@domain.com"
+                    placeholder="pranjal23@gmail.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
