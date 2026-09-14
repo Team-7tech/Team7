@@ -3,6 +3,7 @@ import { GlobalBackground } from './components/GlobalBackground';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { EventSection } from './components/EventSection';
+import { PreviousEventsSection } from './components/PreviousEventsSection';
 import { TicketSection } from './components/TicketSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -26,6 +27,7 @@ export function App() {
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero onOpenTicketModal={handleOpenTicketModal} />
         <EventSection />
+        <PreviousEventsSection />
         <TicketSection onOpenTicketModal={handleOpenTicketModal} />
         <ContactSection />
       </main>
