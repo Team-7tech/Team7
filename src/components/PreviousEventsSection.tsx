@@ -25,7 +25,7 @@ interface PreviousEvent {
 const previousEvents: PreviousEvent[] = [
   {
     id: 'event-1',
-    image: '/event1.jpeg',
+    image: '/assets/event1.webp',
     alt: 'Web का Hackathon event',
     name: 'Web का Hackathon',
     date: '22–23 March 2025',
@@ -33,7 +33,7 @@ const previousEvents: PreviousEvent[] = [
   },
   {
     id: 'event-2',
-    image: '/event2.jpeg',
+    image: '/assets/event2.webp',
     alt: 'Model Masters Expo event',
     name: 'Model Masters Expo',
     date: '10–11 April 2025',
@@ -44,7 +44,7 @@ const previousEvents: PreviousEvent[] = [
   },
   {
     id: 'event-3',
-    image: '/event3.jpeg',
+    image: '/assets/event3.webp',
     alt: 'Hack Node India Hackathon event',
     name: 'Hack Node India Hackathon',
     date: '23 August 2025',
@@ -65,7 +65,7 @@ const previousEvents: PreviousEvent[] = [
 
 export const PreviousEventsSection: React.FC = () => {
   return (
-    <section id="previous-events" className="section-padding" style={{ position: 'relative' }}>
+    <section id="previous-events" className="section-padding-compact" style={{ position: 'relative' }}>
       <Container style={{ position: 'relative', zIndex: 1 }}>
         <SectionHeading
           badge="PAST EVENTS"

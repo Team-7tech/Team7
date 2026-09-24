@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Terminal, Ticket } from 'lucide-react';
+import { Menu, X, Ticket } from 'lucide-react';
 import { eventData } from '../config/eventData';
 
 interface NavbarProps {
@@ -84,7 +84,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTicketModal }) => {
               color: '#ffffff'
             }}
           >
-            <Terminal style={{ width: '20px', height: '20px' }} />
+            <img
+              src="/assets/team7-logo.webp"
+              alt="Team7 Logo"
+              style={{
+                width: '24px',
+                height: '24px',
+                objectFit: 'contain',
+                borderRadius: '4px'
+              }}
+            />
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
@@ -131,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTicketModal }) => {
             className="btn btn-primary btn-sm"
           >
             <Ticket style={{ width: '16px', height: '16px' }} />
-            <span>Get Ticket</span>
+            <span>Get Tickets</span>
           </button>
         </nav>
 
@@ -195,7 +204,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTicketModal }) => {
             style={{ width: '100%', marginTop: '0.5rem' }}
           >
             <Ticket style={{ width: '18px', height: '18px' }} />
-            <span>Get Ticket</span>
+            <span>Get Tickets</span>
           </button>
         </div>
       )}

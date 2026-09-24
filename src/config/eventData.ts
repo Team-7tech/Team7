@@ -48,9 +48,9 @@ export const eventData: EventInfo = {
   venue: "VENUE — TO BE ANNOUNCED",
   venueBadge: "VENUE TBA",
   
-  ticketPrice: "FREE ENTRY (REGISTRATION REQUIRED)",
-  registrationStatus: "COMING_SOON",
-  registrationStatusLabel: "PRE-REGISTRATION OPEN",
+  ticketPrice: "₹199 PER PARTICIPANT",
+  registrationStatus: "OPEN",
+  registrationStatusLabel: "REGISTRATIONS OPEN",
 
   tracks: [
     {
@@ -104,7 +104,7 @@ export const eventData: EventInfo = {
       id: "faq-1",
       category: "SCHEDULE & DATES",
       question: "When will official event dates be announced?",
-      answer: "The official dates and venue for Syntax Verse are currently being finalized by Team7. Pre-register now to lock in priority notifications and early ticket access as soon as dates are locked."
+      answer: "The official dates and venue for Syntax Verse are currently being finalized by Team7. Register now to lock in priority notifications and early ticket access as soon as dates are locked."
     },
     {
       id: "faq-2",
@@ -116,7 +116,7 @@ export const eventData: EventInfo = {
       id: "faq-3",
       category: "PRICING & ADMISSION",
       question: "Is there any registration or entry fee?",
-      answer: "Pre-registration and participation entry passes are 100% free. Selected attendees will receive digital pass confirmation links directly to their registered email."
+      answer: "Ticket price is ₹199 per participant. You can register as Solo, Duo (2 members), or Squad (4 members) with direct checkout."
     },
 
     // Row 2 - Teams & Building
@@ -124,7 +124,7 @@ export const eventData: EventInfo = {
       id: "faq-4",
       category: "TEAM DYNAMICS",
       question: "What is the allowed team size for hackathon projects?",
-      answer: "Teams typically consist of 2 to 4 members. Solo participants can also pre-register and take part in our team-matching sessions before the official hackathon kickoff."
+      answer: "You can participate as Solo (1 member), Duo (2 members), or Squad (4 members). Choose your team size during ticket booking."
     },
     {
       id: "faq-5",

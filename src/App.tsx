@@ -3,9 +3,11 @@ import { GlobalBackground } from './components/GlobalBackground';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { EventSection } from './components/EventSection';
-import { PreviousEventsSection } from './components/PreviousEventsSection';
 import { TicketSection } from './components/TicketSection';
+import { PreviousEventsSection } from './components/PreviousEventsSection';
+import { FaqSection } from './components/FaqSection';
 import { ContactSection } from './components/ContactSection';
+import { DeveloperCredit } from './components/DeveloperCredit';
 import { Footer } from './components/Footer';
 import { TicketModal } from './components/TicketModal';
 
@@ -23,19 +25,34 @@ export function App() {
       {/* Sticky Header Nav */}
       <Navbar onOpenTicketModal={handleOpenTicketModal} />
 
-      {/* Main Page Sections */}
+      {/* Main Page Sections — Strictly composition of page content */}
       <main style={{ position: 'relative', zIndex: 1 }}>
+        {/* 1. Hero Section */}
         <Hero onOpenTicketModal={handleOpenTicketModal} />
+
+        {/* 2. Event Section & 3. Focus Tracks Section */}
         <EventSection />
-        <PreviousEventsSection />
+
+        {/* 4. Ready to Enter the Verse Section & 5. Registration / Get Tickets Section */}
         <TicketSection onOpenTicketModal={handleOpenTicketModal} />
+
+        {/* 6. Previous Events Section */}
+        <PreviousEventsSection />
+
+        {/* 7. FAQ Section */}
+        <FaqSection />
+
+        {/* 8. Contact Section */}
         <ContactSection />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Registration Modal */}
+      {/* Fixed Viewport Developer Credit Badge */}
+      <DeveloperCredit />
+
+      {/* Simple Get Tickets Access Modal */}
       <TicketModal
         isOpen={isTicketModalOpen}
         onClose={handleCloseTicketModal}

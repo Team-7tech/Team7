@@ -3,7 +3,6 @@ import { Cpu, Bot, Sparkles, Globe, CheckCircle2 } from 'lucide-react';
 import { Container } from './common/Container';
 import { SectionHeading } from './common/SectionHeading';
 import { EventCard } from './EventCard';
-import { FaqSection } from './FaqSection';
 import { eventData } from '../config/eventData';
 
 export const EventSection: React.FC = () => {
@@ -132,9 +131,6 @@ export const EventSection: React.FC = () => {
           </div>
         </div>
       </Container>
-
-      {/* Redesigned 3-Row Rolling Horizontal FAQ Section */}
-      <FaqSection />
     </section>
   );
 };

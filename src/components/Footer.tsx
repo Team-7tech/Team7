@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
       style={{
         borderTop: '1px solid var(--border-subtle)',
         background: 'rgba(5, 7, 12, 0.95)',
-        padding: '3rem 0 2rem 0',
+        padding: '1.5rem 0 1.5rem 0',
         color: 'var(--text-secondary)'
       }}
     >

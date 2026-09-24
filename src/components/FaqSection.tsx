@@ -111,8 +111,9 @@ export const FaqSection: React.FC = () => {
 
   return (
     <section
+      id="faq"
+      className="section-padding-compact"
       style={{
-        padding: '6rem 0',
         position: 'relative',
         overflow: 'hidden',
         background: 'transparent'

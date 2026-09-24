@@ -10,12 +10,12 @@ interface TicketSectionProps {
 
 export const TicketSection: React.FC<TicketSectionProps> = ({ onOpenTicketModal }) => {
   return (
-    <section id="tickets" className="section-padding" style={{ position: 'relative' }}>
+    <section id="tickets" className="section-padding-compact" style={{ position: 'relative' }}>
       <Container style={{ position: 'relative', zIndex: 1 }}>
         <SectionHeading
           badge="PASSES & TICKETS"
           title="Ready to Enter the Verse?"
-          subtitle="Pre-register today to secure priority access, track announcements, and early schedule notifications for Syntax Verse."
+          subtitle="Register today to secure your access pass, track announcements, and receive early schedule notifications for Syntax Verse."
         />
 
         <div style={{ maxWidth: '820px', margin: '0 auto' }}>
@@ -76,7 +76,7 @@ export const TicketSection: React.FC<TicketSectionProps> = ({ onOpenTicketModal 
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   <Ticket style={{ width: '20px', height: '20px' }} />
-                  <span>Get Ticket / Pre-Register</span>
+                  <span>Get Tickets</span>
                   <ArrowRight style={{ width: '18px', height: '18px' }} />
                 </button>
               </div>
@@ -117,11 +117,11 @@ export const TicketSection: React.FC<TicketSectionProps> = ({ onOpenTicketModal 
                   <span className="font-mono" style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.6)', letterSpacing: '0.08em', fontWeight: 600 }}>
                     ADMISSION FEE
                   </span>
-                  <div style={{ fontSize: '1.85rem', fontWeight: 800, color: '#ffffff', margin: '0.25rem 0' }}>
-                    FREE
+                  <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff', margin: '0.25rem 0' }}>
+                    ₹199
                   </div>
                   <span style={{ fontSize: '0.825rem', color: 'rgba(255, 255, 255, 0.9)', fontWeight: 700 }}>
-                    Pre-Registration Required
+                    Per Participant
                   </span>
                 </div>
 
@@ -135,7 +135,7 @@ export const TicketSection: React.FC<TicketSectionProps> = ({ onOpenTicketModal 
                     lineHeight: 1.5
                   }}
                 >
-                  No payment gate. Once official dates are announced, registered attendees will receive ticket confirmation codes.
+                  Click "Get Tickets" to view official registration link and QR code access.
                 </div>
               </div>
             </div>

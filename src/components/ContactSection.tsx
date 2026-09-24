@@ -46,37 +46,93 @@ export const ContactSection: React.FC = () => {
     message: ''
   });
 
+  const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (formData.name.length > 100) {
+      newErrors.name = 'Name must be 100 characters or less';
+    }
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email address';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim()) || formData.email.length > 100) {
+      newErrors.email = 'Invalid email';
     }
-    if (!formData.message.trim()) newErrors.message = 'Message cannot be empty';
+
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message cannot be empty';
+    } else if (formData.message.length > 2000) {
+      newErrors.message = 'Message must be 2000 characters or less';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
+
     if (!validate()) return;
 
-    setIsSubmitting(true);
-    // Frontend structure ready for future backend delivery to connect@team7.co.in
-    setTimeout(() => {
-      setIsSubmitting(false);
+    // Spam honeypot check: if filled, fail silently / pretend sent without dispatching
+    if (honeypot) {
       setIsSent(true);
-    }, 1000);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/harshitlawrenc@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          inquiryType: formData.inquiryType,
+          message: formData.message.trim(),
+          _subject: `Syntax Verse Inquiry - ${formData.inquiryType}`,
+          _captcha: 'true'
+        })
+      });
+
+      let isSuccess = false;
+      if (response.ok) {
+        try {
+          const resData = await response.json();
+          if (resData && (resData.success === 'true' || resData.success === true || response.status === 200)) {
+            isSuccess = true;
+          }
+        } catch {
+          isSuccess = response.status === 200;
+        }
+      }
+
+      if (isSuccess) {
+        setIsSent(true);
+      } else {
+        setSubmitError('Unable to send your message. Please try again.');
+      }
+    } catch {
+      setSubmitError('Unable to send your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" className="section-padding" style={{ position: 'relative' }}>
+    <section id="contact" className="section-padding-compact" style={{ position: 'relative' }}>
       <Container>
         <SectionHeading
           badge="GET IN TOUCH"
@@ -176,7 +232,7 @@ export const ContactSection: React.FC = () => {
                   <a
                     href={contactData.socialLinks.instagram}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     style={{
                       width: '38px',
                       height: '38px',
@@ -208,7 +264,7 @@ export const ContactSection: React.FC = () => {
                   <a
                     href={contactData.socialLinks.linkedin}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     style={{
                       width: '38px',
                       height: '38px',
@@ -240,7 +296,7 @@ export const ContactSection: React.FC = () => {
                   <a
                     href={contactData.socialLinks.github}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     style={{
                       width: '38px',
                       height: '38px',
@@ -280,7 +336,18 @@ export const ContactSection: React.FC = () => {
             }}
           >
             {!isSent ? (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
+                {/* Anti-Spam Hidden Honeypot Input */}
+                <input
+                  type="text"
+                  name="_honey"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  style={{ display: 'none' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em' }}>
                     Send a Message
@@ -290,17 +357,39 @@ export const ContactSection: React.FC = () => {
                   </p>
                 </div>
 
+                {submitError && (
+                  <div
+                    style={{
+                      marginBottom: '1.25rem',
+                      padding: '0.75rem 1rem',
+                      borderRadius: '8px',
+                      background: 'rgba(239, 68, 68, 0.15)',
+                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      color: '#f87171',
+                      fontSize: '0.85rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem'
+                    }}
+                  >
+                    <AlertCircle style={{ width: '16px', height: '16px', flexShrink: 0 }} />
+                    <span>{submitError}</span>
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label className="form-label">Your Name</label>
                   <input
                     type="text"
+                    name="name"
+                    maxLength={100}
                     className="form-input"
                     placeholder="e.g. Pranjal Sukhla"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                   {errors.name && (
-                    <span style={{ fontSize: '0.75rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '0.25rem', marginTop: '0.25rem' }}>
                       <AlertCircle style={{ width: '12px', height: '12px' }} /> {errors.name}
                     </span>
                   )}
@@ -310,13 +399,15 @@ export const ContactSection: React.FC = () => {
                   <label className="form-label">Email Address</label>
                   <input
                     type="email"
+                    name="email"
+                    maxLength={100}
                     className="form-input"
                     placeholder="pranjal23@gmail.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                   {errors.email && (
-                    <span style={{ fontSize: '0.75rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '0.25rem', marginTop: '0.25rem' }}>
                       <AlertCircle style={{ width: '12px', height: '12px' }} /> {errors.email}
                     </span>
                   )}
@@ -325,6 +416,7 @@ export const ContactSection: React.FC = () => {
                 <div className="form-group">
                   <label className="form-label">Topic / Inquiry Type</label>
                   <select
+                    name="inquiryType"
                     className="form-select"
                     value={formData.inquiryType}
                     onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
@@ -340,6 +432,8 @@ export const ContactSection: React.FC = () => {
                 <div className="form-group">
                   <label className="form-label">Message</label>
                   <textarea
+                    name="message"
+                    maxLength={2000}
                     className="form-textarea"
                     rows={4}
                     placeholder="How can Team7 help you?"
@@ -347,7 +441,7 @@ export const ContactSection: React.FC = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   />
                   {errors.message && (
-                    <span style={{ fontSize: '0.75rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <span style={{ fontSize: '0.75rem', color: '#f87171', display: 'flex', alignItems: 'center', gap: '0.25rem', marginTop: '0.25rem' }}>
                       <AlertCircle style={{ width: '12px', height: '12px' }} /> {errors.message}
                     </span>
                   )}
@@ -399,6 +493,7 @@ export const ContactSection: React.FC = () => {
                 <button
                   onClick={() => {
                     setFormData({ name: '', email: '', inquiryType: contactData.inquiryTypes[0], message: '' });
+                    setSubmitError(null);
                     setIsSent(false);
                   }}
                   className="btn btn-secondary"

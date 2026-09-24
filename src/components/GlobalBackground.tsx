@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import badgeImgUrl from '../assets/team7-badge-bg.jpg';
+
+const badgeImgUrl = '/assets/hero-background.webp';
 
 interface ParticleScratch {
   x: number;
