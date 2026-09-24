@@ -91,7 +91,7 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/harshitlawrenc@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/1dd4c92e7d80f525ab2105d689ea1f69', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
